@@ -10,4 +10,6 @@ function fillArray(n, value) {
 var intervals = fillArray(5, 45)
     .concat([80])
     .concat(fillArray(11, 45))
-    .concat(fillArray(3, 40));
+    .concat([80])
+    .concat(fillArray(10, 40))
+    .concat(fillArray(10, 30));

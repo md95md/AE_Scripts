@@ -28,7 +28,7 @@ function createTextLayerDynamicKeys()
     removeAllKeys(opacityProp);
 
     var textValues = [];
-    for (var i = 20; i >= 0; i--)
+    for (var i = 30; i >= 0; i--)
     {
         textValues.push(i.toString());
     }
@@ -42,7 +42,7 @@ function createTextLayerDynamicKeys()
         
     function checkValue(value)
     {
-        if (value >= 20) {
+        if (value >= 30) {
             return -5;
         } else if (value <= 9) {
             return 10;
