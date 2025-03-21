@@ -3,14 +3,14 @@ function createTextLayerDynamicKeys()
     var comp = app.project.activeItem;
     if (!(comp instanceof CompItem))
     {
-        alert("Пожалуйста, откройте композицию.");
+        alert("Пожалуйста, выберите в окне проекта композицию (сделать активной)");
         return;
     }
 
-    var textLayer = comp.layer("My Text Layer");
+    var textLayer = comp.layer("UI dogs counter");
     if (!textLayer)
     {
-        alert("Слой 'My Text Layer' не найден.");
+        alert("Слой 'UI dogs counter' не найден.");
         return;
     }
 

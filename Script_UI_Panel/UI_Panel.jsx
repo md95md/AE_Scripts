@@ -1,8 +1,10 @@
+// #include "C:/Program Files/Adobe/Adobe After Effects 2025/Support Files/Scripts/Custom/UI_CounterDynamic/Main_DogsUICounter.jsx"
+
 function createDockableUI(thisObj) {
     var dialog =
         thisObj instanceof Panel
             ? thisObj
-            : new Window("palette", "My Panel", undefined, { resizable: true }); // исправлено "resizable"
+            : new Window("palette", "My Panel", undefined, { resizable: true });
 
     dialog.onResizing = dialog.onResize = function () {
         this.layout.resize();
@@ -36,24 +38,38 @@ win.margins = 16;
 // Статичный текст
 var statictext1 = win.add("statictext", undefined, "How many dogs to find?");
 
-// Группа элементов
+// Группа для поля ввода и кнопки
 var group1 = win.add("group", undefined);
 group1.orientation = "row";
 group1.alignChildren = ["left", "center"];
 group1.spacing = 10;
 group1.margins = 0;
 
-// Панель внутри группы
+// Панель ввода числа
 var panel1 = group1.add("panel", undefined, "Set value");
 panel1.orientation = "column";
 panel1.alignChildren = ["left", "top"];
-panel1.spacing = 50;
-panel1.margins = 50;
+panel1.spacing = 10;
+panel1.margins = 10;
 
-// Важно! Обновляем макет перед показом
+// Поле ввода числа
+var inputNumber = panel1.add("edittext", undefined, "30");
+inputNumber.characters = 5;
+
+// Кнопка "Запуск кода"
+var runButton = panel1.add("button", undefined, "Запуск кода");
+
+// Обработчик нажатия кнопки
+runButton.onClick = function () {
+    var value = parseInt(inputNumber.text, 10);
+    if (isNaN(value) || value < 0) {
+        alert("Введите корректное число!");
+        return;
+    }
+    createTextLayerDynamicKeys(value);
+};
+
 win.layout.layout(true);
-
-// Показываем окно (только если это не `Panel`)
 if (!(win instanceof Panel)) {
     win.show();
 }
