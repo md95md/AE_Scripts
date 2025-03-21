@@ -7,9 +7,8 @@ function fillArray(n, value) {
 }
 
 // Наш общий массив интервалов:
-var intervals = fillArray(5, 45)
+var intervals = fillArray(2, 45)
     .concat([80])
-    .concat(fillArray(11, 45))
+    .concat(fillArray(10, 45))
     .concat([80])
-    .concat(fillArray(10, 40))
-    .concat(fillArray(10, 30));
+    .concat(fillArray(20, 45));
