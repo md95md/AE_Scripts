@@ -23,9 +23,8 @@ function createMarkersLayer(maxValue)
 
     var frameRate = comp.frameRate;
     var oneFrame  = 1 / frameRate;
-    var t = 8 * oneFrame; // Стартовое время
+    var t = 8 * oneFrame; 
 
-    // Ограничиваем количество маркеров значением maxValue
     var count = Math.min(maxValue, intervals.length);
 
     for (var i = 1; i < count + 1; i++) {
