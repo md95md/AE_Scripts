@@ -6,8 +6,7 @@ function createTextLayerDynamicKeys(maxValue) {
         alert("Пожалуйста, откройте композицию в окне проекта");
         return;
     }
-
-    // Ищем слой с текстом
+    
     var textLayer = null;
     for (var i = 1; i <= comp.numLayers; i++) {
         if (comp.layer(i).name === "UI dogs counter") {
@@ -31,13 +30,11 @@ function createTextLayerDynamicKeys(maxValue) {
     }
     removeAllKeys(sourceTextProp);
 
-    // Проверяем, загружен ли массив intervals
     if (typeof intervals === "undefined" || !Array.isArray(intervals)) {
         alert("Ошибка: массив 'intervals' не найден или пуст!");
         return;
     }
 
-    // Используем введённое пользователем число
     var textValues = [];
     for (var i = 0; i <= maxValue; i++) {
         textValues.push(i.toString());
@@ -45,7 +42,7 @@ function createTextLayerDynamicKeys(maxValue) {
 
     var frameRate = comp.frameRate;
     var oneFrame  = 1 / frameRate;
-    var t = 8 * oneFrame; // Стартовое время
+    var t = 8 * oneFrame; 
 
     app.beginUndoGroup("Dynamic Keys (Text Layer)");
 
@@ -56,11 +53,10 @@ function createTextLayerDynamicKeys(maxValue) {
         var nextDoc = new TextDocument(textValues[i+1]);
         sourceTextProp.setValueAtTime(t + oneFrame, nextDoc);
 
-        // ✅ Теперь вместо фиксированного `8 * oneFrame` используется `intervals[i]`
         if (i < intervals.length) {
             t += (intervals[i] * oneFrame);
         } else {
-            t += (8 * oneFrame); // Если интервалов не хватает, используем стандартное значение
+            t += (8 * oneFrame);
         }
     }
 
@@ -71,7 +67,6 @@ function createTextLayerDynamicKeys(maxValue) {
 }
 
 
-//Title
 function createTextLayerReverseKeys(maxValue) {
     var comp = app.project.activeItem;
     if (!(comp instanceof CompItem)) {
@@ -144,7 +139,6 @@ function createTextLayerReverseKeys(maxValue) {
             sourceTextProp.setValueAtTime(t + oneFrame, nextDoc);
         }
 
-        // ===== ПОЗИЦИЯ =====
         positionProp.setValueAtTime(t - 8 * oneFrame, [ basePos[0] + xOffset, basePos[1] ]);
 
         var posAtT = [ basePos[0] + xOffset, basePos[1] + 42 ];
@@ -157,17 +151,14 @@ function createTextLayerReverseKeys(maxValue) {
 
         positionProp.setValueAtTime(t + 7 * oneFrame, [ basePos[0] + xOffset, basePos[1] ]);
 
-        // ===== ПРОЗРАЧНОСТЬ =====
         opacityProp.setValueAtTime(t - 2 * oneFrame, 100);
         opacityProp.setValueAtTime(t, 0);
         opacityProp.setValueAtTime(t + oneFrame, 0);
         opacityProp.setValueAtTime(t + 2 * oneFrame, 100);
 
-        // Сдвигаем время на следующий интервал
         t += intervals[i] * oneFrame;
     }
 
-    // Финальное значение текста
     if (maxValue - count >= 0) {
         var finalDoc = new TextDocument((maxValue - count).toString());
         sourceTextProp.setValueAtTime(t, finalDoc);
