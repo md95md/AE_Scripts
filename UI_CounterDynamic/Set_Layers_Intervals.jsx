@@ -24,19 +24,16 @@ function SetLayersIntervals(maxValue) {
 
     app.beginUndoGroup("Расставляем слои в активной композиции");
 
-    // Начинаем, как и в текстовом слое и маркерах — с 8 кадров
     var t = 8 * oneFrame;
 
     for (var i = 1; i <= count; i++) {
         var layer = activeComp.layer(i);
         layer.startTime = t;
 
-        // Двигаем t по интервалу (точно так же, как в createMarkersLayer)
         t += intervals[i - 1] * oneFrame;
     }
 
     app.endUndoGroup();
 
-    // Создаём маркеры в тех же точках
     createMarkersLayer(maxValue);
 }
