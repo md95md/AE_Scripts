@@ -25,7 +25,6 @@ function showWindow(myWindow) {
     }
 }
 
-// Создаём UI окно
 var win = createDockableUI(this);
 win.text = "Name";
 win.preferredSize.width = 512;
@@ -35,24 +34,20 @@ win.alignChildren = ["center", "top"];
 win.spacing = 10;
 win.margins = 16;
 
-// Статичный текст
 var statictext1 = win.add("statictext", undefined, "How many dogs to find?");
 
-// Группа для поля ввода и кнопки
 var group1 = win.add("group", undefined);
 group1.orientation = "row";
 group1.alignChildren = ["left", "center"];
 group1.spacing = 10;
 group1.margins = 0;
 
-// Панель ввода числа
 var panel1 = group1.add("panel", undefined, "Choose comp UI");
 panel1.orientation = "column";
 panel1.alignChildren = ["left", "top"];
 panel1.spacing = 20;
 panel1.margins = 40;
 
-// Поле ввода числа
 var inputNumber = panel1.add("edittext", undefined, "30");
 inputNumber.characters = 5;
 
@@ -65,13 +60,11 @@ splitButton.onClick = function () {
         return;
     }
 
-    SetLayersIntervals(value); //вызываем внешнюю функцию
+    SetLayersIntervals(value);
 };
 
-// Кнопка "Запуск кода"
 var runButton = panel1.add("button", undefined, "Run");
 
-// Обработчик нажатия кнопки
 runButton.onClick = function () {
     var value = parseInt(inputNumber.text, 10);
     if (isNaN(value) || value < 0) {
@@ -80,13 +73,11 @@ runButton.onClick = function () {
     }
 
 
-    // Теперь вызываем скрипты только после нажатия
     createTextLayerDynamicKeys(value);
     createMarkersLayer(value);
 };
 
 
-// ===== Группа 2 =====
 var statictext2 = win.add("statictext", undefined, "Reverse numbers:");
 
 var group2 = win.add("group", undefined);
