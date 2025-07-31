@@ -6,7 +6,6 @@ function fillArray(n, value) {
     return arr;
 }
 
-// Наш общий массив интервалов:
 var intervals = fillArray(2, 45)
     .concat([80])
     .concat(fillArray(10, 45))
